@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "214460335106",
+    "project_id": "grab-and-go-mobile",
+    "storage_bucket": "grab-and-go-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214460335106:android:e0791fc5630380d8f0131b",
+        "android_client_info": {
+          "package_name": "com.android.grabAndGo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214460335106-5sronj6g2noiob2q5k2s6od0b4pdddmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAleUSjtVVbDFK7gOGvFuSXLyeir3utdmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214460335106-5sronj6g2noiob2q5k2s6od0b4pdddmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214460335106:android:8f8209e6a38ffd66f0131b",
+        "android_client_info": {
+          "package_name": "com.bangkit.grab_and_go_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214460335106-5sronj6g2noiob2q5k2s6od0b4pdddmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAleUSjtVVbDFK7gOGvFuSXLyeir3utdmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214460335106-5sronj6g2noiob2q5k2s6od0b4pdddmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

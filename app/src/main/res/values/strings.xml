@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">grab-and-go-android</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="or">Or</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="you_are_signed_in">Successfully Signed to Grab and Go</string>
+</resources>
