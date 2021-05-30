@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.SignInActivity"
+    tools:context=".ui.signin.SignInFragment"
     tools:ignore="Autofill, LabelFor">
+
+    <ProgressBar
+        android:id="@+id/signInProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:translationZ="10dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +41,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount2"
+        app:layout_constraintBottom_toTopOf="@+id/btnNavigateCreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
@@ -38,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="0dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
@@ -55,7 +68,7 @@
         android:layout_marginVertical="20dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:maxLength="8"
+        android:maxLength="16"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
         app:layout_constraintEnd_toEndOf="@+id/etSignInEmail"
@@ -69,13 +82,13 @@
         android:layout_marginVertical="20dp"
         android:backgroundTint="@color/black"
         android:text="@string/sign_in"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount2"
+        app:layout_constraintBottom_toTopOf="@+id/btnNavigateCreateAccount"
         app:layout_constraintEnd_toEndOf="@+id/etSignInPassword"
         app:layout_constraintStart_toStartOf="@+id/etSignInPassword"
         app:layout_constraintTop_toBottomOf="@+id/etSignInPassword" />
 
     <Button
-        android:id="@+id/btnCreateAccount2"
+        android:id="@+id/btnNavigateCreateAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
