@@ -10,13 +10,45 @@
        android:id="@+id/view_finder"
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="1"/>
+       android:layout_weight="0.9"/>
 
-   <Button
-       android:id="@+id/button_capture"
-       android:text="Capture"
-       android:layout_width="wrap_content"
+   <LinearLayout
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_gravity="center" />
+       android:orientation="horizontal"
+       android:layout_weight="0.1"
+       android:gravity="center">
+
+      <ImageButton
+          android:id="@+id/btn_back"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@drawable/ic_back"
+          android:background="@drawable/round_button"
+          android:backgroundTint="@color/white"
+          android:layout_gravity="center"
+          android:contentDescription="@string/btn_capture_contentdesc" />
+
+      <ImageButton
+          android:id="@+id/btn_capture"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/ic_baseline_photo_camera_24"
+          android:background="@drawable/round_button"
+          android:layout_gravity="center"
+          android:contentDescription="@string/btn_capture_contentdesc"
+          android:layout_marginHorizontal="20dp"/>
+
+      <ImageButton
+          android:id="@+id/btn_cart"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@drawable/ic_baseline_menu_24"
+          android:background="@drawable/round_button"
+          android:backgroundTint="@color/white"
+          android:layout_gravity="center"
+          android:contentDescription="@string/btn_capture_contentdesc" />
+
+   </LinearLayout>
 
 </LinearLayout>

@@ -39,6 +39,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homeFragment_to_shoppingHistoryFragment"
+            app:destination="@id/shoppingHistoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/permissions_fragment"
@@ -57,17 +64,10 @@
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping" >
         <action
-            android:id="@+id/action_camera_to_permissions"
+            android:id="@+id/action_shoppingFragment_to_permissions"
             app:destination="@id/permissions_fragment"
             app:popUpTo="@id/shoppingFragment"
             app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_shoppingFragment_to_shoppingHistoryFragment"
-            app:destination="@id/shoppingHistoryFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_shoppingFragment_to_checkoutFragment"
             app:destination="@id/checkoutFragment"
@@ -75,6 +75,16 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_shoppingFragment_to_shoppingCartFragment"
+            app:destination="@id/shoppingCartFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_shoppingFragment_to_picturePreviewFragment"
+            app:destination="@id/picturePreviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoppingHistoryFragment"
@@ -91,4 +101,15 @@
         android:name="com.bangkit.grab_and_go_android.ui.checkout.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" />
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.bangkit.grab_and_go_android.ui.shoppingcart.ShoppingCartFragment"
+        android:label="fragment_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" />
+    <fragment
+        android:id="@+id/picturePreviewFragment"
+        android:name="com.bangkit.grab_and_go_android.ui.shopping.PicturePreviewFragment"
+        android:label="fragment_picture_preview"
+        tools:layout="@layout/fragment_picture_preview" />
+
 </navigation>
