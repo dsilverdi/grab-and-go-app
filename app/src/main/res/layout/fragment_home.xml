@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/textHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startShoppingFab"
         android:layout_width="wrap_content"

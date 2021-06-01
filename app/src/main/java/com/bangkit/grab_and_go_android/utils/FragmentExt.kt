@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 
 fun Fragment.toastShort(msg: String){
     val toast = Toast.makeText(this.activity, msg, Toast.LENGTH_SHORT)
+    // DOes nothing in API 30
     toast.setGravity(Gravity.TOP, 0, 75)
     toast.show()
 }
 fun Fragment.toastLong(msg: String){
     val toast = Toast.makeText(this.activity, msg, Toast.LENGTH_LONG)
+    // DOes nothing in API 30
     toast.setGravity(Gravity.TOP, 0, 75)
     toast.show()
 }

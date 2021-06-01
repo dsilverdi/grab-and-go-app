@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,31 +23,41 @@ class CameraPermissionsFragment : Fragment() {
 
         if (!hasPermissions(requireContext())) {
             // Request camera-related permissions
-            requestPermissions(PERMISSIONS_REQUIRED, PERMISSIONS_REQUEST_CODE)
+            // DEPRECATED
+            //requestPermissions(PERMISSIONS_REQUIRED, PERMISSIONS_REQUEST_CODE)
+            val permRequest = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if(isGranted) {
+                    Toast.makeText(context, "Permission request granted", Toast.LENGTH_LONG).show()
+                    navigateToCamera()
+                } else {
+                    Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
+                }
+            }
+            permRequest.launch(Manifest.permission.CAMERA)
         } else {
             // If permissions have already been granted, proceed
             navigateToCamera()
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSIONS_REQUEST_CODE) {
-            if (PackageManager.PERMISSION_GRANTED == grantResults.firstOrNull()) {
-                // Take the user to the success fragment when permission is granted
-                Toast.makeText(context, "Permission request granted", Toast.LENGTH_LONG).show()
-                navigateToCamera()
-            } else {
-                Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
+    // DEPRECATED
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if (requestCode == PERMISSIONS_REQUEST_CODE) {
+//            if (PackageManager.PERMISSION_GRANTED == grantResults.firstOrNull()) {
+//                // Take the user to the success fragment when permission is granted
+//                Toast.makeText(context, "Permission request granted", Toast.LENGTH_LONG).show()
+//                navigateToCamera()
+//            } else {
+//                Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
+//            }
+//        }
+//    }
 
     private fun navigateToCamera() {
         lifecycleScope.launchWhenStarted {
-//            Navigation.findNavController(requireActivity(), R.id.fragment_container)
-            findNavController()
+            Navigation.findNavController(requireActivity(), R.id.nav_host)
                 .navigate(
                 CameraPermissionsFragmentDirections.actionPermissionsToCamera())
         }
