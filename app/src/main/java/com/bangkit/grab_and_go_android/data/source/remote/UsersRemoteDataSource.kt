@@ -3,6 +3,7 @@ package com.bangkit.grab_and_go_android.data.source.remote
 import com.bangkit.grab_and_go_android.data.User
 import com.bangkit.grab_and_go_android.data.vo.Response
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -13,10 +14,10 @@ class UsersRemoteDataSource @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    private val _currentUser = firebaseAuth.currentUser
+    private fun getUser(): FirebaseUser? = firebaseAuth.currentUser
 
-    suspend fun getCurrentUser(): Response<User> {
-        val firebaseUser = _currentUser
+    fun getCurrentUser(): Response<User> {
+        val firebaseUser = getUser()
         if(firebaseUser != null) {
             val uid = firebaseUser.uid
             val email = firebaseUser.email
@@ -35,7 +36,7 @@ class UsersRemoteDataSource @Inject constructor(
                 var email: String = user.email!!
                 val password: String = user.password!!
                 firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-                _currentUser?.let {
+                getUser()?.let {
                     it.sendEmailVerification().addOnCompleteListener { emailVerificationTask ->
                         if(!emailVerificationTask.isSuccessful) {
                             email = ""
@@ -66,15 +67,20 @@ class UsersRemoteDataSource @Inject constructor(
         }
     }
 
-    fun signOut() {
+    fun signOut(): Response<Any?> {
+        return try {
+            firebaseAuth.signOut()
+            Response.Success(null)
+        } catch(e: Exception) {
+            Response.Error(e)
+        }
+    }
+
+    suspend fun registerUser() {
 
     }
 
-    fun registerUser() {
-
-    }
-
-    fun verifyEmail() {
+    suspend fun verifyEmail() {
 
     }
 

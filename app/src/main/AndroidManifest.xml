@@ -18,13 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grabandgoandroid">
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.Grabandgoandroid.NoActionBar">
+            android:name=".ui.LaunchScreenActivity"
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.Grabandgoandroid.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <!-- Register as a system camera app -->
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />

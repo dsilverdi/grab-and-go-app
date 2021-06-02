@@ -1,6 +1,7 @@
 package com.bangkit.grab_and_go_android.ui.shopping
 
-import android.graphics.*
+import android.graphics.Color
+import android.graphics.ImageFormat
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -10,20 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.camera.core.*
-import androidx.camera.core.Camera
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.databinding.FragmentShoppingBinding
 import com.bangkit.grab_and_go_android.utils.toastLong
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.nio.ByteBuffer
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -33,7 +29,7 @@ import java.util.concurrent.Executors
 class ShoppingFragment : Fragment() {
 
     private lateinit var binding: FragmentShoppingBinding
-    private val viewModel by viewModels<ShoppingViewModel>()
+//    private val viewModel by viewModels<ShoppingViewModel>()
 
     private lateinit var container: LinearLayout
     private lateinit var imageCapture: ImageCapture
@@ -107,9 +103,9 @@ class ShoppingFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             navController().navigateUp()
         }
-        binding.btnCart.setOnClickListener {
-            navController().navigate(ShoppingFragmentDirections.actionShoppingFragmentToShoppingCartFragment())
-        }
+//        binding.btnCart.setOnClickListener {
+//            navController().navigate(ShoppingFragmentDirections.actionShoppingFragmentToShoppingCartFragment())
+//        }
         // Listener for button used to capture photo
         binding.btnCapture.setOnClickListener {
             // Get a stable reference of the modifiable image capture use case
@@ -121,8 +117,8 @@ class ShoppingFragment : Fragment() {
                         }
                         override fun onCaptureSuccess(image: ImageProxy) {
                             super.onCaptureSuccess(image)
-                            val img1 = image.image?.planes
-                            val img2 = image.planes
+//                            val img1 = image.image?.planes
+//                            val img2 = image.planes
                             Log.d(TAG, image.imageInfo.toString())
                             Log.d(TAG, "format1: "+image.image?.format.toString())
                             Log.d(TAG, "width= ${image.width}, height = ${image.height}")

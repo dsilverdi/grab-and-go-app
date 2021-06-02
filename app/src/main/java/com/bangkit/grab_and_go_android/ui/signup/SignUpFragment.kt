@@ -1,13 +1,11 @@
 package com.bangkit.grab_and_go_android.ui.signup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bangkit.grab_and_go_android.data.User
 import com.bangkit.grab_and_go_android.databinding.FragmentSignUpBinding
 import com.bangkit.grab_and_go_android.utils.toastLong
@@ -60,10 +58,6 @@ class SignUpFragment : Fragment() {
                 hideProgressBar()
             }
         })
-
-        binding.btnNavigateSignIn.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         binding.btnCreateAccount.setOnClickListener {
             signUpUser()

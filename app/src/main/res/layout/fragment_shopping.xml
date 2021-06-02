@@ -23,7 +23,7 @@
           android:id="@+id/btn_back"
           android:layout_width="60dp"
           android:layout_height="60dp"
-          android:src="@drawable/ic_back"
+          android:src="@drawable/ic_figma_back_arrow"
           android:background="@drawable/round_button"
           android:backgroundTint="@color/white"
           android:layout_gravity="center"
@@ -33,21 +33,18 @@
           android:id="@+id/btn_capture"
           android:layout_width="70dp"
           android:layout_height="70dp"
-          android:src="@drawable/ic_baseline_photo_camera_24"
+          android:src="@drawable/ic_figma_shopping_bag"
           android:background="@drawable/round_button"
+          android:backgroundTint="@color/purple_figma"
           android:layout_gravity="center"
           android:contentDescription="@string/btn_capture_contentdesc"
           android:layout_marginHorizontal="20dp"/>
 
-      <ImageButton
-          android:id="@+id/btn_cart"
+      <TextView
+          android:id="@+id/tv_blank"
           android:layout_width="60dp"
           android:layout_height="60dp"
-          android:src="@drawable/ic_baseline_menu_24"
-          android:background="@drawable/round_button"
-          android:backgroundTint="@color/white"
-          android:layout_gravity="center"
-          android:contentDescription="@string/btn_capture_contentdesc" />
+          android:layout_gravity="center" />
 
    </LinearLayout>
 

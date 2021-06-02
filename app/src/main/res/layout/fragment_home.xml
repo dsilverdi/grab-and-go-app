@@ -1,29 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/textHome"
+    <ImageButton
+        android:id="@+id/btn_user_settings"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@drawable/rounded_border_button"
+        android:backgroundTint="?attr/colorPrimary"
+        android:src="@drawable/ic_ionicons_user"
+        app:tint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        tools:ignore="ContentDescription" />
+
+    <include
+        android:id="@+id/custom_button_layout"
+        layout="@layout/custom_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline2" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/startShoppingFab"
+    <ImageView
+        android:id="@+id/img_ecommerce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ecommerce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_button_layout"
+        app:layout_constraintBottom_toTopOf="@id/start_shopping_fab"
+        app:layout_constraintVertical_bias="0.2"
+        tools:ignore="ContentDescription" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:fabCustomSize="64dp"
-        android:backgroundTint="@color/purple_figma"
-        app:tint="@color/white"
-        android:src="@drawable/ic_shopping"
-        app:fabSize="normal"
-        android:layout_gravity="bottom|center"
-        android:contentDescription="@string/fab_content_desc" />
+        app:layout_constraintStart_toStartOf="@id/img_ecommerce"
+        app:layout_constraintTop_toBottomOf="@id/img_ecommerce"
+        app:layout_constraintEnd_toEndOf="@id/img_ecommerce"
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="64dp"
+        android:text="@string/lorem_ipsum"
+        android:textColor="@color/purple_figma60"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/start_shopping_fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="@dimen/fab_margin"
+        android:contentDescription="@string/fab_content_desc"
+        android:gravity="center"
+        android:text="@string/start_shopping"
+        android:textColor="@color/purple_figma"
+        app:backgroundTint="@color/white"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_outline_photo_camera_24"
+        app:iconGravity="textStart"
+        app:iconTint="@color/purple_figma"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="340dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

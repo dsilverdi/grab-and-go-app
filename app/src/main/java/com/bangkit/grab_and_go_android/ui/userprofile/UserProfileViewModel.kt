@@ -1,4 +1,4 @@
-package com.bangkit.grab_and_go_android.ui.signin
+package com.bangkit.grab_and_go_android.ui.userprofile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,50 +12,49 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(
+class UserProfileViewModel @Inject constructor(
     private val usersRepository: UsersRepository
 ) : ViewModel() {
 
-    private val _loading = MutableLiveData<Boolean>()
+    private val _loading = MutableLiveData<Boolean>(false)
     val loading: LiveData<Boolean> = _loading
 
-//    private val _loginSuccess = MutableLiveData<Boolean>(false)
-//    val loginSuccess: LiveData<Boolean> =_loginSuccess
-    private val _loginFailed = MutableLiveData<Boolean>()
-    val loginFailed: LiveData<Boolean> =_loginFailed
-    private val _currentUser = MutableLiveData<User?>()
-    val currentUser: LiveData<User?> = _currentUser
+    private val _logoutSuccess = MutableLiveData<Boolean>(false)
+    val logoutSuccess: LiveData<Boolean> =_logoutSuccess
+
+    private val _logoutError = MutableLiveData<Boolean>(false)
+    val logoutError: LiveData<Boolean> =_logoutError
+
+    private val _currentUser = MutableLiveData<User>()
+    val currentUser: LiveData<User> = _currentUser
 
     private fun prepare() {
-        _currentUser.value = null
-//        _loginSuccess.value = false
-        _loginFailed.value = false
+        _logoutError.value = false
+        _logoutSuccess.value = false
         _loading.value = true
     }
 
-    fun authenticate(email: String, password: String) {
+    fun signOut() {
         prepare()
         viewModelScope.launch {
-            when(val task = usersRepository.signIn(email, password)) {
+            when(usersRepository.signOut()) {
                 is Response.Success -> {
-//                    _loginSuccess.value = true
-                    _currentUser.value = task.data
+                    _logoutSuccess.value = true
                 }
-                is Response.Error -> {
-                    _loginFailed.value = true
+                else -> {
+                    _logoutError.value = true
                 }
             }
             _loading.value = false
         }
     }
 
-    fun getSignedInUser(): LiveData<User?> {
+    fun getSignedInUser(): LiveData<User> {
         prepare()
         viewModelScope.launch {
             when(val response = usersRepository.getCurrentUser()) {
                 is Response.Success -> {
-//                    _loginSuccess.value = true
-                    _currentUser.value = response.data
+                    _currentUser.value = response.data!!
                 }
                 else -> {}
             }
@@ -63,5 +62,4 @@ class SignInViewModel @Inject constructor(
         }
         return _currentUser
     }
-
 }

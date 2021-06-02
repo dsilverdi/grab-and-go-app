@@ -82,34 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="@string/create_account"
-        app:layout_constraintBottom_toTopOf="@id/btnNavigateSignIn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/etConfirmPassword"
         app:layout_constraintStart_toStartOf="@id/etConfirmPassword"
         app:layout_constraintTop_toBottomOf="@id/etConfirmPassword" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnNavigateSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
-
-    <Button
-        android:id="@+id/btnNavigateSignIn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:backgroundTint="@color/black"
-        android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/btnCreateAccount"
-        app:layout_constraintStart_toStartOf="@id/btnCreateAccount"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateAccount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

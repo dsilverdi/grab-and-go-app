@@ -27,7 +27,7 @@ class ShoppingCartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val toolbar: Toolbar = binding.toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24_white)
+        toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
         toolbar.setNavigationOnClickListener(View.OnClickListener { requireActivity().onBackPressed() })
 
     }

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Grabandgoandroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/purple_figma</item>
+        <item name="colorPrimaryVariant">@color/purple_figma60_darker</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -22,5 +22,13 @@
     <style name="Theme.Grabandgoandroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Grabandgoandroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolbarColoredBackArrow" parent="Theme.Grabandgoandroid">
+        <item name="android:colorControlNormal">@color/purple_figma60_darker</item>
+    </style>
+
+    <style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_screen_background</item>
+    </style>
 
 </resources>

@@ -19,9 +19,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="@string/cart_title"
-            app:popupTheme="@style/Theme.Grabandgoandroid.PopupOverlay" />
+            android:background="@color/white"
+            app:titleTextColor="@color/black"
+            app:title=""
+            android:theme="@style/ToolbarColoredBackArrow"
+            app:popupTheme="@style/Theme.Grabandgoandroid.PopupOverlay">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/cart_title"
+                android:textColor="@color/black"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
