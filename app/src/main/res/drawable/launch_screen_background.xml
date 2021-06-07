@@ -12,7 +12,11 @@
                    android:type="linear"/>
         </shape> -->
     </item>
-    <item
-        android:drawable="@mipmap/ic_launcher_round"
-        android:gravity="center"/>
+    <item>
+        <bitmap android:src="@drawable/img_launcher_round"
+            android:gravity="center" />
+    </item>
+<!--    <item-->
+<!--        android:drawable="@mipmap/ic_launcher_round"-->
+<!--        android:gravity="center"/>-->
 </layer-list>

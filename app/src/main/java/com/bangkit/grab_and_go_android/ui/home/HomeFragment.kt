@@ -27,10 +27,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.customButtonLayout.btnShoppingHistory.setOnClickListener {
+        binding.customButtonLayout.btnHistory.setOnClickListener {
             goToHistory()
         }
-        binding.customButtonLayout.btnShoppingHistoryArrow.setOnClickListener {
+        binding.customButtonLayout.btnHistoryArrow.setOnClickListener {
             goToHistory()
         }
 
@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun goToShopping() {
-        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToShoppingFragment())
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCameraFragment())
     }
 
     private fun goToProfile() {
@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun goToHistory() {
-        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToShoppingHistoryFragment())
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHistoryFragment())
     }
 
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.grab_and_go_android.data.User
 import com.bangkit.grab_and_go_android.data.source.UsersRepository
-import com.bangkit.grab_and_go_android.data.vo.Response
+import com.bangkit.grab_and_go_android.data.vo.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,8 +25,8 @@ class UserProfileViewModel @Inject constructor(
     private val _logoutError = MutableLiveData<Boolean>(false)
     val logoutError: LiveData<Boolean> =_logoutError
 
-    private val _currentUser = MutableLiveData<User>()
-    val currentUser: LiveData<User> = _currentUser
+    private val _currentUser = MutableLiveData<User?>()
+    val currentUser: LiveData<User?> = _currentUser
 
     private fun prepare() {
         _logoutError.value = false
@@ -38,7 +38,7 @@ class UserProfileViewModel @Inject constructor(
         prepare()
         viewModelScope.launch {
             when(usersRepository.signOut()) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     _logoutSuccess.value = true
                 }
                 else -> {
@@ -49,12 +49,12 @@ class UserProfileViewModel @Inject constructor(
         }
     }
 
-    fun getSignedInUser(): LiveData<User> {
+    fun getSignedInUser(): LiveData<User?> {
         prepare()
         viewModelScope.launch {
             when(val response = usersRepository.getCurrentUser()) {
-                is Response.Success -> {
-                    _currentUser.value = response.data!!
+                is Resource.Success -> {
+                    _currentUser.value = response.data
                 }
                 else -> {}
             }

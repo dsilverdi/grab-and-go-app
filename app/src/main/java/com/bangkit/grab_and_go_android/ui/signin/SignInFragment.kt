@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bangkit.grab_and_go_android.databinding.FragmentSignInBinding
+import com.bangkit.grab_and_go_android.utils.hideKeyboard
 import com.bangkit.grab_and_go_android.utils.setUpProgressBar
 import com.bangkit.grab_and_go_android.utils.toastShort
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,18 +57,11 @@ class SignInFragment : Fragment() {
         })
 
         binding.btnSignIn.setOnClickListener {
-            hideKeyboardFrom(binding.etSignInEmail)
-            hideKeyboardFrom(binding.etSignInPassword)
+            hideKeyboard(binding.etSignInEmail)
+            hideKeyboard(binding.etSignInPassword)
             signInUser()
         }
 
-    }
-
-    private fun hideKeyboardFrom(view: View) {
-        val context = requireActivity()
-        val imm: InputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-        view.clearFocus()
     }
 
     private fun signInUser() {

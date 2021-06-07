@@ -1,7 +1,7 @@
 package com.bangkit.grab_and_go_android.data.source.remote
 
 import com.bangkit.grab_and_go_android.data.User
-import com.bangkit.grab_and_go_android.data.vo.Response
+import com.bangkit.grab_and_go_android.data.vo.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineDispatcher
@@ -16,41 +16,45 @@ class UsersRemoteDataSource @Inject constructor(
 
     private fun getUser(): FirebaseUser? = firebaseAuth.currentUser
 
-    fun getCurrentUser(): Response<User> {
+    fun getCurrentUser(): Resource<User> {
         val firebaseUser = getUser()
         if(firebaseUser != null) {
             val uid = firebaseUser.uid
             val email = firebaseUser.email
             val name = firebaseUser.displayName
             val user = User(
-                uid = uid, name = name, email = email
+                uid = uid, displayName = name, email = email
             )
-            return Response.Success(user)
+            return Resource.Success(user)
         }
-        return Response.Error(Exception("Null current user"))
+        return Resource.Error(Exception("Null current user"))
     }
 
-    suspend fun signUp(user: User): Response<String> {
+    suspend fun signUp(user: User): Resource<String> {
         return withContext(ioDispatcher) {
             try {
                 var email: String = user.email!!
                 val password: String = user.password!!
                 firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-                getUser()?.let {
-                    it.sendEmailVerification().addOnCompleteListener { emailVerificationTask ->
-                        if(!emailVerificationTask.isSuccessful) {
-                            email = ""
-                        }
-                    }.await()
-                }
-                return@withContext Response.Success(email)
+//                getUser()?.let {
+//                    it.sendEmailVerification().addOnCompleteListener { emailVerificationTask ->
+//                        if(!emailVerificationTask.isSuccessful) {
+//                            email = ""
+//                        }
+//                    }.await()
+//                }
+                return@withContext Resource.Success(email)
             } catch (e: Exception) {
-                return@withContext Response.Error(e)
+                return@withContext Resource.Error(e)
             }
         }
     }
 
-    suspend fun signIn(email: String, password: String): Response<User> {
+//    fun setProfile() {
+//        getUser().displayName
+//    }
+
+    suspend fun signIn(email: String, password: String): Resource<User> {
         return withContext(ioDispatcher) {
             try {
                 firebaseAuth.signInWithEmailAndPassword(email, password).await()
@@ -59,20 +63,20 @@ class UsersRemoteDataSource @Inject constructor(
                     uid = uid,
                     email = email
                 )
-                return@withContext Response.Success(user)
+                return@withContext Resource.Success(user)
             } catch (e: Exception) {
-                return@withContext Response.Error(e)
+                return@withContext Resource.Error(e)
             }
 
         }
     }
 
-    fun signOut(): Response<Any?> {
+    fun signOut(): Resource<Any?> {
         return try {
             firebaseAuth.signOut()
-            Response.Success(null)
+            Resource.Success(null)
         } catch(e: Exception) {
-            Response.Error(e)
+            Resource.Error(e)
         }
     }
 

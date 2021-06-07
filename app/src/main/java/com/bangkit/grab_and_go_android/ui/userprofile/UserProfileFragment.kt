@@ -62,13 +62,13 @@ class UserProfileFragment : Fragment() {
 
     private fun setUserDetailUI(user: User) {
         binding.tvUserEmail.text = user.email
-        binding.tvUserName.text = user.name
+        binding.tvUserName.text = user.displayName
     }
 
     private fun showPopup() {
         val alert: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
         alert.setMessage("Are you sure?")
-            .setPositiveButton("Logout", DialogInterface.OnClickListener { dialog, which ->
+            .setPositiveButton("Sign Out", DialogInterface.OnClickListener { dialog, which ->
                 signOutUser() // Last step. Logout function
             }).setNegativeButton("Cancel", null)
         val alert1: AlertDialog = alert.create()

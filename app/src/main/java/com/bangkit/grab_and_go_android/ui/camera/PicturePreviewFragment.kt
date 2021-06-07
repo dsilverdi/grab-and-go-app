@@ -1,4 +1,4 @@
-package com.bangkit.grab_and_go_android.ui.shopping
+package com.bangkit.grab_and_go_android.ui.camera
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,26 +14,20 @@ import com.bumptech.glide.Glide
 class PicturePreviewFragment : Fragment() {
 
     companion object {
-        const val IMAGE_BYTES_ARG = "img"
-        const val IMAGE_WIDTH_ARG = "width"
-        const val IMAGE_HEIGHT_ARG = "height"
-        const val IMAGE_ROTATION_ARG = "rotation_degree"
+        const val IMAGE_DATA_ARG = "img_data"
+        const val IMAGE_BYTE_ARRAY_ARG = "img"
     }
 
     private lateinit var binding: FragmentPicturePreviewBinding
 //    private val args: PicturePreviewFragmentArgs by navArgs()
-    private var bytes: ByteArray? = null
-    private var width: Int = 0
-    private var height: Int = 0
-    private var rotationDegree: Int = 0
+    private var imageData: ImageData? = null
+    private var byteArray: ByteArray? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            bytes = it.getByteArray(IMAGE_BYTES_ARG)
-            width = it.getInt(IMAGE_WIDTH_ARG)
-            height = it.getInt(IMAGE_HEIGHT_ARG)
-            rotationDegree = it.getInt(IMAGE_ROTATION_ARG)
+            imageData = it.getParcelable(IMAGE_DATA_ARG)
+            byteArray = it.getByteArray(IMAGE_BYTE_ARRAY_ARG)
         }
     }
 
@@ -48,15 +42,17 @@ class PicturePreviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val img: ByteArray = args.image
-        bytes?.let {
-            val bitmap: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes!!.size, null)
+        byteArray?.let {
+            val bitmap: Bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size, null)
             Glide.with(view).load(bitmap).into(binding.img)
+            binding.tvImgInfo.text = "size = ~${(it.size/1024)}KB"
         }
+
 //        val bitmap = BitmapFactory.decodeByteArray(image, 0, image.size)
-        binding.tvImgWidth.text = "width: $width"
-        binding.tvImgHeight.text = "height: $height"
-        binding.tvImgDegreee.text = "rotationDegree: $rotationDegree"
+
+        imageData?.let {
+            binding.tvImgClass.text = it.toString()
+        }
 
     }
 }

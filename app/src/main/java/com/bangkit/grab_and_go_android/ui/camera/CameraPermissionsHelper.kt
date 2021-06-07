@@ -1,4 +1,4 @@
-package com.bangkit.grab_and_go_android.ui.shopping
+package com.bangkit.grab_and_go_android.ui.camera
 
 import android.Manifest
 import android.content.Context
@@ -15,7 +15,7 @@ import com.bangkit.grab_and_go_android.R
 private const val PERMISSIONS_REQUEST_CODE = 10
 private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 
-class CameraPermissionsFragment : Fragment() {
+class CameraPermissionsHelper : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class CameraPermissionsFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             Navigation.findNavController(requireActivity(), R.id.nav_host)
                 .navigate(
-                CameraPermissionsFragmentDirections.actionPermissionsToCamera())
+                CameraPermissionsHelperDirections.actionPermissionsToCamera())
         }
     }
 
