@@ -40,17 +40,17 @@ class CameraViewModel @Inject constructor(
         }
     }
 
-    fun getResult(imgBase64: String) {
-        viewModelScope.launch {
-            prepare()
-            when(val response = cartRepository.getCartItems(imgBase64)) {
-                is Resource.Success -> {
-                    _cart.value = response.data
-                }
-            }
-            _loading.value = false
-        }
-    }
+//    fun getResult(imgBase64: String) {
+//        viewModelScope.launch {
+//            prepare()
+//            when(val response = cartRepository.getCartItems(imgBase64)) {
+//                is Resource.Success -> {
+//                    _cart.value = response.data
+//                }
+//            }
+//            _loading.value = false
+//        }
+//    }
 
     private fun prepare() {
         if(_loading.value == false) {

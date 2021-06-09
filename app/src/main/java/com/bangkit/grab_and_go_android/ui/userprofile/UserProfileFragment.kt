@@ -10,9 +10,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.data.User
 import com.bangkit.grab_and_go_android.databinding.FragmentUserProfileBinding
+import com.bangkit.grab_and_go_android.utils.Util
 import com.bangkit.grab_and_go_android.utils.setUpProgressBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,7 +35,7 @@ class UserProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val toolbar: Toolbar = binding.toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
+        toolbar.setNavigationIcon(Util.getBackButtonIconRes())
 //        toolbar.navigationIcon?.setTint(Color.BLACK)
         toolbar.setNavigationOnClickListener(View.OnClickListener { requireActivity().onBackPressed() })
 

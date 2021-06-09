@@ -8,21 +8,28 @@
         android:id="@+id/welcomeFragment"
         android:name="com.bangkit.grab_and_go_android.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_signInFragment"
             app:destination="@id/signInFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_welcomeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="grabngoapp://main/welcome" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:action="ACTION_VIEW"
+            app:uri="http://www.grabngoapp23.com/main/welcome" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -60,28 +67,32 @@
         android:id="@+id/homeFragment"
         android:name="com.bangkit.grab_and_go_android.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_cameraFragment"
             app:destination="@id/permissions_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_historyFragment"
             app:destination="@id/historyFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+        <deepLink
+            android:id="@+id/deepLinkHome"
+            app:action="ACTION_VIEW"
+            app:uri="grabngoapp://main/home" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -120,13 +131,6 @@
             app:popUpTo="@id/cameraFragment"
             app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_cameraFragment_to_checkoutFragment"
-            app:destination="@id/checkoutFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
             android:id="@+id/action_cameraFragment_to_cartFragment"
             app:destination="@id/cartFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -143,15 +147,24 @@
         android:label="fragment_shopping_history"
         tools:layout="@layout/fragment_history" />
     <fragment
-        android:id="@+id/checkoutFragment"
-        android:name="com.bangkit.grab_and_go_android.ui.checkout.CheckoutFragment"
-        android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" />
-    <fragment
         android:id="@+id/cartFragment"
         android:name="com.bangkit.grab_and_go_android.ui.cart.CartFragment"
         android:label="fragment_shopping_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.bangkit.grab_and_go_android.ui.checkout.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout">
+        <argument
+            android:name="total"
+            android:defaultValue="0"
+            app:argType="float" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:action="ACTION_VIEW"
+            app:uri="grabngoapp://main/checkout/{total}" />
+    </fragment>
     <fragment
         android:id="@+id/picturePreviewFragment"
         android:name="com.bangkit.grab_and_go_android.ui.camera.PicturePreviewFragment"

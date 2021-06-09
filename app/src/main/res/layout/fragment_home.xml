@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@id/img_ecommerce"
         android:layout_marginTop="24dp"
         android:paddingHorizontal="64dp"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/go_and_grab_desc"
         android:textColor="@color/purple_figma60"/>
 
 

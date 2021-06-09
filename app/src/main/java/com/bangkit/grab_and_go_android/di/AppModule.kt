@@ -1,9 +1,11 @@
 package com.bangkit.grab_and_go_android.di
 
 import com.bangkit.grab_and_go_android.data.source.CartRepository
+import com.bangkit.grab_and_go_android.data.source.PaymentRepository
 import com.bangkit.grab_and_go_android.data.source.UsersRepository
 import com.bangkit.grab_and_go_android.data.source.local.CartLocalDataSource
 import com.bangkit.grab_and_go_android.data.source.remote.CartRemoteDataSource
+import com.bangkit.grab_and_go_android.data.source.remote.PaymentRemoteDataSource
 import com.bangkit.grab_and_go_android.data.source.remote.UsersRemoteDataSource
 import com.bangkit.grab_and_go_android.data.source.remote.network.ModelAPI
 import com.google.firebase.auth.FirebaseAuth
@@ -104,6 +106,24 @@ object AppModule {
         return CartRepository(
             cartLocalDataSource, cartRemoteDataSource
         )
+    }
+
+    @Singleton
+    @Provides
+    fun providePaymentRemoteDataSource(
+        api: ModelAPI,
+        ioDispatcher: CoroutineDispatcher
+    ): PaymentRemoteDataSource {
+        return PaymentRemoteDataSource(
+            api, ioDispatcher
+        )
+    }
+    @Singleton
+    @Provides
+    fun providePaymentRepository(
+        paymentRemoteDataSource: PaymentRemoteDataSource
+    ): PaymentRepository {
+        return PaymentRepository(paymentRemoteDataSource)
     }
 
     @Singleton

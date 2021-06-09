@@ -8,9 +8,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.databinding.FragmentHistoryBinding
-import com.bangkit.grab_and_go_android.ui.cart.CartItemRecyclerAdapter
+import com.bangkit.grab_and_go_android.utils.Util
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +30,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val toolbar: Toolbar = binding.toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
+        toolbar.setNavigationIcon(Util.getBackButtonIconRes())
         toolbar.setNavigationOnClickListener(View.OnClickListener { requireActivity().onBackPressed() })
         setupRecyclerView()
 

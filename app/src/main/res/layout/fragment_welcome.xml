@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
+        android:text="@string/welcome_text"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -35,7 +35,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/material_btn_height"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
         app:cornerRadius="32dp"
@@ -50,7 +50,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/material_btn_height"
         android:layout_marginHorizontal="16dp"
         app:backgroundTint="?attr/colorOnPrimary"
         app:cornerRadius="32dp"
