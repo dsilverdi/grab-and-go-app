@@ -1,15 +1,18 @@
 package com.bangkit.grab_and_go_android.ui.signin
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.databinding.FragmentSignInBinding
+import com.bangkit.grab_and_go_android.utils.hideKeyboard
+import com.bangkit.grab_and_go_android.utils.setUpProgressBar
 import com.bangkit.grab_and_go_android.utils.toastShort
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,44 +34,18 @@ class SignInFragment : Fragment() {
         return binding.root
     }
 
-    private fun signInUser() {
-        val email = binding.etSignInEmail.text.toString().trim()
-        val password = binding.etSignInPassword.text.toString().trim()
-
-        if(email.isBlank() && password.isBlank()) {
-            toastShort("Email or password must not be blank")
-            return
-        }
-
-        viewModel.authenticate(email, password)
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSignedInUser().observe(viewLifecycleOwner, { user ->
-//            if(user != null) {
-//                Log.d(TAG, user.toString())
-//                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToHomeFragment())
-//            } else {
-//                Log.d(TAG, "Null user")
-//            }
-        })
+        setUpProgressBar(binding.signInProgressBar, viewModel.loading)
 
-        viewModel.loading.observe(viewLifecycleOwner, { loading ->
-            if(loading) {
-                showProgressBar()
-            } else {
-                hideProgressBar()
-            }
-        })
+        viewModel.getSignedInUser()
 
-        viewModel.loginSuccess.observe(viewLifecycleOwner, { success ->
-            if(success) {
-                toastShort("Signed in successfully")
-                Log.d(TAG, Thread.currentThread().toString())
-                Log.d(TAG, viewModel.currentUser.value.toString())
+        viewModel.currentUser.observe(viewLifecycleOwner, { user ->
+            if(user != null) {
+//                toastShort("Signed in successfully")
+//                Log.d(TAG, Thread.currentThread().toString())
+//                Log.d(TAG, viewModel.currentUser.value.toString())
                 findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToHomeFragment())
             }
         })
@@ -79,22 +56,23 @@ class SignInFragment : Fragment() {
             }
         })
 
-        binding.btnNavigateCreateAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
-        }
-
         binding.btnSignIn.setOnClickListener {
+            hideKeyboard(binding.etSignInEmail)
+            hideKeyboard(binding.etSignInPassword)
             signInUser()
         }
 
     }
 
-    private fun showProgressBar() {
-        binding.signInProgressBar.visibility = View.VISIBLE
-    }
+    private fun signInUser() {
+        val email = binding.etSignInEmail.text.toString().trim()
+        val password = binding.etSignInPassword.text.toString().trim()
 
-    private fun hideProgressBar() {
-        binding.signInProgressBar.visibility = View.GONE
-    }
+        if(email.isBlank() && password.isBlank()) {
+            toastShort("Email or password must not be blank")
+            return
+        }
 
+        viewModel.authenticate(email, password)
+    }
 }

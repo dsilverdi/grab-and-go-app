@@ -1,15 +1,18 @@
 package com.bangkit.grab_and_go_android.ui.signup
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.data.User
 import com.bangkit.grab_and_go_android.databinding.FragmentSignUpBinding
+import com.bangkit.grab_and_go_android.utils.hideKeyboard
 import com.bangkit.grab_and_go_android.utils.toastLong
 import com.bangkit.grab_and_go_android.utils.toastShort
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,19 +42,21 @@ class SignUpFragment : Fragment() {
             return
         }
 
-        viewModel.verificationEmailSent.observe(viewLifecycleOwner, { isSent ->
-            if(isSent) {
-                toastLong("Verification email has been sent")
-            }
-        })
         viewModel.signUp(
-            User(null, email, password)
+            User(
+                uid = null,
+                displayName = null,
+                email = email,
+                password = password
+            )
         )
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setUpUI()
 
         viewModel.loading.observe(viewLifecycleOwner, { loading ->
             if(loading) {
@@ -61,14 +66,44 @@ class SignUpFragment : Fragment() {
             }
         })
 
-        binding.btnNavigateSignIn.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        // Create account doesn;t have email verification feature for now
+
+        viewModel.success.observe(viewLifecycleOwner, { success ->
+            if(success) {
+                findNavController().navigate(
+                    SignUpFragmentDirections.actionSignUpFragmentToHomeFragment()
+                )
+//                setSuccessText()
+//                toastLong("Verification email has been sent")
+            }
+        })
+        viewModel.errorException.observe(viewLifecycleOwner, { exception ->
+            if(exception != null) {
+                setFailText(exception.message.toString())
+//                toastLong("Error "+ exception.message.toString())
+//                Log.e("SignUp", "Error: $exception")
+            }
+        })
 
         binding.btnCreateAccount.setOnClickListener {
+            hideKeyboard(view)
             signUpUser()
         }
 
+    }
+
+    private fun setUpUI() {
+        binding.tvSignupResult.text = ""
+    }
+
+    private fun setFailText(error: String) {
+        binding.tvSignupResult.setTextColor(Color.GREEN)
+        binding.tvSignupResult.text = error
+    }
+
+    private fun setSuccessText() {
+        binding.tvSignupResult.setTextColor(Color.BLACK)
+        binding.tvSignupResult.text = getString(R.string.sign_up_success)
     }
 
     private fun showProgressBar() {

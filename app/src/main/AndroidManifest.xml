@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bangkit.grab_and_go_android">
 
     <uses-feature
@@ -11,26 +12,32 @@
 
     <application
         android:name=".MyApplication"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Grabandgoandroid">
+        android:theme="@style/Theme.Grabandgoandroid"
+        tools:ignore="AllowBackup,UnusedAttribute">
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.Grabandgoandroid.NoActionBar">
+            android:name=".ui.LaunchScreenActivity"
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.Grabandgoandroid.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <nav-graph android:value="@navigation/nav_graph" />
             <!-- Register as a system camera app -->
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />
                 <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
                 <action android:name="android.media.action.VIDEO_CAMERA" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/camera_ui_container"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.camera.CameraFragment">
+
+   <ProgressBar
+       android:id="@+id/camera_progress_bar"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+       android:translationZ="10dp"
+       android:visibility="gone"
+       tools:visibility="visible"/>
+
+   <androidx.camera.view.PreviewView
+       android:id="@+id/view_finder"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_above="@id/layout_btn"/>
+
+   <LinearLayout
+       android:id="@+id/layout_btn"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_alignParentBottom="true"
+       android:layout_marginVertical="24dp"
+       android:gravity="center">
+
+      <ImageButton
+          android:id="@+id/btn_back"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:src="@drawable/ic_figma_back_arrow"
+          android:background="@drawable/round_button"
+          android:backgroundTint="@color/white"
+          android:layout_gravity="center"
+          android:contentDescription="@string/btn_capture_contentdesc" />
+
+      <ImageButton
+          android:id="@+id/btn_capture"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/ic_figma_shopping_bag"
+          android:background="@drawable/round_button"
+          android:backgroundTint="@color/purple_figma"
+          android:layout_gravity="center"
+          android:contentDescription="@string/btn_capture_contentdesc"
+          android:layout_marginHorizontal="20dp"/>
+
+      <TextView
+          android:id="@+id/tv_blank"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:layout_gravity="center" />
+
+   </LinearLayout>
+
+</RelativeLayout>

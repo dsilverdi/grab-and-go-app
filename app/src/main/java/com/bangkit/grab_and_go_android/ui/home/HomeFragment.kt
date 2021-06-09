@@ -1,14 +1,11 @@
 package com.bangkit.grab_and_go_android.ui.home
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.bangkit.grab_and_go_android.R
 import com.bangkit.grab_and_go_android.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -18,13 +15,11 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentHomeBinding
-//    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,10 +27,32 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startShoppingFab.setOnClickListener {
-            Log.d(TAG, "Fab click")
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToShoppingFragment())
+        binding.customButtonLayout.btnHistory.setOnClickListener {
+            goToHistory()
         }
+        binding.customButtonLayout.btnHistoryArrow.setOnClickListener {
+            goToHistory()
+        }
+
+        binding.btnUserSettings.setOnClickListener {
+            goToProfile()
+        }
+
+        binding.startShoppingFab.setOnClickListener {
+            goToShopping()
+        }
+    }
+
+    private fun goToShopping() {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCameraFragment())
+    }
+
+    private fun goToProfile() {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUserProfileFragment())
+    }
+
+    private fun goToHistory() {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHistoryFragment())
     }
 
 }
